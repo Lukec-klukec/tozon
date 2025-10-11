@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jure Tozon - Padel Trener</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+            fill: #059669;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #059669;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: #4b5563;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 1rem 6rem;
+            background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 50%, #f0fdfa 100%);
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content .highlight {
+            color: #059669;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: #059669;
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: #047857;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #059669;
+            border-color: #059669;
+        }
+
+        .btn-secondary:hover {
+            background: #ecfdf5;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .hero-box {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #34d399 0%, #14b8a6 100%);
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: rotate(3deg);
+            transition: transform 0.3s;
+        }
+
+        .hero-box:hover {
+            transform: rotate(6deg);
+        }
+
+        .hero-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.2;
+        }
+
+        .hero-icon svg {
+            width: 192px;
+            height: 192px;
+            fill: white;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 1rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-divider {
+            width: 96px;
+            height: 4px;
+            background: #059669;
+            margin: 0 auto 1.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: #4b5563;
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.125rem;
+            color: #374151;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #059669;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .specialties {
+            background: linear-gradient(135deg, #d1fae5 0%, #ccfbf1 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .specialties h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .specialties ul {
+            list-style: none;
+        }
+
+        .specialties li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+
+        .checkmark {
+            width: 24px;
+            height: 24px;
+            background: #059669;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            color: white;
+            font-size: 0.75rem;
+        }
+
+        /* Services Section */
+        .services {
+            background: #f9fafb;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #059669;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card.featured {
+            border-top-color: #0d9488;
+            transform: scale(1.05);
+        }
+
+        .service-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #ccfbf1;
+            color: #115e59;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #059669;
+        }
+
+        .service-card.featured .service-icon svg {
+            fill: #0d9488;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: flex-start;
+            color: #374151;
+            margin-bottom: 0.75rem;
+        }
+
+        .bullet {
+            color: #059669;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .service-card.featured .bullet {
+            color: #0d9488;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-label {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            background: white;
+        }
+
+        .schedule-container {
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        .schedule-wrapper {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-item {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .schedule-item:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .schedule-day {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.125rem;
+        }
+
+        .schedule-day svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.75rem;
+            fill: #059669;
+        }
+
+        .schedule-time {
+            display: flex;
+            align-items: center;
+            color: #4b5563;
+        }
+
+        .schedule-time svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            fill: #6b7280;
+        }
+
+        .schedule-level {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .level-advanced {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .level-beginner {
+            background: #ccfbf1;
+            color: #115e59;
+        }
+
+        .level-intermediate {
+            background: #fed7aa;
+            color: #9a3412;
+        }
+
+        .level-all {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .schedule-note {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            color: #374151;
+        }
+
+        .schedule-note strong {
+            color: #1f2937;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #f9fafb;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: #d1fae5;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #059669;
+        }
+
+        .contact-details {
+            margin-left: 1rem;
+        }
+
+        .contact-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .contact-value a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-value a:hover {
+            color: #059669;
+        }
+
+        .hours-card {
+            background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+            color: white;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #059669;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+
+        .form-group textarea {
+            resize: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 3rem 1rem;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .logo {
+            color: white;
+        }
+
+        footer .logo svg {
+            fill: #10b981;
+        }
+
+        footer p {
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero .container,
+            .about-grid,
+            .services-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card.featured {
+                transform: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .schedule-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            footer .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <span><b>Jure Tozon</b></span>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Domov</a></li>
+                <li><a href="#about">O meni</a></li>
+                <li><a href="#services">Storitve</a></li>
+                <li><a href="#schedule">Urnik</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>
+                    Postani boljši<br>
+                    <span class="highlight">padel igralec</span>
+                </h1>
+                <p>
+                    Profesionalni padel trening za vse ravni igranja. Dvignite svojo igro na novo raven s trenerjem Juretom, ki ima dolgoletne izkušnje z igranjem.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Rezerviraj trening</a>
+                    <a href="#services" class="btn btn-secondary">Več o storitvah</a>
+                </div>
+            </div>
+            <img src="tozon.jpg" alt="Girl in a jacket" width="438" height="780">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>O meni</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Sem Jure Tozon, padel trener z 4 leti izkušenj v športu. Tudi sam tekmujem na profesionalnem nivoju. Moja želja je nastopati na olimpiskih igrah 2032 na katerih bo tudi padel.
+                    </p>
+                    <p>
+                        V športu vem veliko, saj kot sem povedal ga tudi sam igram profesionalno. Zato menim da vam lahko pomagam.
+                    </p>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Let izkušenj</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Zadovoljnih igralcev</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Treningov</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specialties">
+                    <h3>Kaj vam lahko nudim</h3>
+                    <ul>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Individualni in skupinski treningi</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Tehnična analiza in izboljšave</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Taktična priprava za tekmovanja</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Kondiciska priprava</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Storitve</h2>
+                <div class="section-divider"></div>
+                <p>Izberi program, ki ustreza tvojim potrebam in ciljem</p>
+            </div>
+            <div class="services-grid">
+                <!-- Individual Training -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Individualni trening</h3>
+                    <p>Osredotočen pouk samo zate. Popolnoma prilagojen tvoji ravni igranja in ciljem, ki jih želiš doseči.</p>
+                    <ul class="service-features">
+                        <li><span class="bullet">•</span> Personaliziran pristop</li>
+                        <li><span class="bullet">•</span> Video analiza tehnike</li>
+                        <li><span class="bullet">•</span> Fleksibilen urnik</li>
+                    </ul>
+                    <div class="price">45€</div>
+                    <div class="price-label">na uro</div>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; text-align: center;">Rezerviraj</a>
+                </div>
+
+                <!-- Group Training -->
+                <div class="service-card featured">
+                    <span class="service-badge">Najbolj priljubljeno</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Skupinski trening</h3>
+                    <p>Treniraj skupaj z drugimi igralci. Izboljšaj svoje veščine v dinamičnem in motivacijskem okolju.</p>
+                    <ul class="service-features">
+                        <li><span class="bullet">•</span> Skupine do 6 igralcev</li>
+                        <li><span class="bullet">•</span> Skupinsko učenje s prijatelji/druzino</li>
+                        <li><span class="bullet">•</span> Fleksibilen urnik</li>
+                    </ul>
+                    <div class="price">25€</div>
+                    <div class="price-label">na uro / osebo</div>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; text-align: center; background: #0d9488;">Rezerviraj</a>
+                </div>
+
+                <!-- Competition Prep -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Tekmovalna priprava</h3>
+                    <p>Intenzivna priprava za tekmovanja. Taktika, strategija in kondiciska pripravljenost za uspeh.</p>
+                    <ul class="service-features">
+                        <li><span class="bullet">•</span> Analiza nasprotnikov</li>
+                        <li><span class="bullet">•</span> Kondiciska priprava</li>
+                        <li><span class="bullet">•</span> Tekmovalne simulacije</li>
+                    </ul>
+                    <div class="price">60€</div>
+                    <div class="price-label">na uro</div>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; text-align: center;">Rezerviraj</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule">
+        <div class="container">
+            <div class="section-header">
+                <h2>Urnik treningov</h2>
+                <div class="section-divider"></div>
+                <p>Fleksibilen urnik</p>
+            </div>
+            <div class="schedule-container">
+                <div class="schedule-wrapper">
+                    <div class="schedule-item">
+                        <div class="schedule-content">
+                            <div class="schedule-day">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                Ponedeljek
+                            </div>
+                            <div class="schedule-time">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                8.00-16.30
+                            </div>
+                            <span class="schedule-level level-advanced">Napredni</span>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-content">
+                            <div class="schedule-day">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                Sreda
+                            </div>
+                            <div class="schedule-time">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                8.00-14.00
+                            </div>
+                            <span class="schedule-level level-beginner">Začetniki</span>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-content">
+                            <div class="schedule-day">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                Četrtek
+                            </div>
+                            <div class="schedule-time">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                8.00-14.00
+                            </div>
+                            <span class="schedule-level level-intermediate">Srednji nivo</span>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-content">
+                            <div class="schedule-day">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                Sobota
+                            </div>
+                            <div class="schedule-time">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                9.00-17.00
+                            </div>
+                            <span class="schedule-level level-all">Vsi nivoji</span>
+                        </div>
+                    </div>
+
+                    <div class="schedule-note">
+                        <p><strong>Individualni treningi:</strong> Po dogovoru - fleksibilen urnik od ponedeljka do nedelje</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kontakt</h2>
+                <div class="section-divider"></div>
+                <p>Kontaktiraj me za rezervacijo treninga ali dodatne informacije</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>Kontaktni podatki</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-label">Telefon</div>
+                                <div class="contact-value">
+                                    <a href="tel:+38640123456">+386 40 123 456</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">
+                                    <a href="mailto:jure.tozon@gmail.si">jure.tozon@gmail.si</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-label">Lokacija</div>
+                                <div class="contact-value">
+                                    Padel center Ljubljana<br>
+                                    <span style="font-weight: 400; font-size: 1rem; color: #4b5563;">Celovška cesta 123, 1000 Ljubljana</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card hours-card">
+                        <h3>Delovni čas</h3>
+                        <div class="hours-item">
+                            <span>Ponedeljek - Petek</span>
+                            <strong>08:00 - 16:30</strong>
+                        </div>
+                        <div class="hours-item">
+                            <span>Sobota</span>
+                            <strong>08:00 - 17:00</strong>
+                        </div>
+                        <div class="hours-item">
+                            <span>Nedelja</span>
+                            <strong>Po dogovoru</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Pošlji sporočilo</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Ime in priimek</label>
+                            <input type="text" id="name" placeholder="Janez Novak">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="janez@primer.si">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" placeholder="+386 40 123 456">
+                        </div>
+                        <div class="form-group">
+                            <label for="promociska-koda">Promociska koda</label>
+                            <input type="text" id="name" placeholder="LUKA10">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Sporočilo</label>
+                            <textarea id="message" rows="5" placeholder="Zanima me individualni trening..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Pošlji sporočilo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <span><b>Jure Tozon</b></span>
+            <p>&copy; 2025 Jure Tozon Padel Trening. Vse pravice pridržane.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('active');
+
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
